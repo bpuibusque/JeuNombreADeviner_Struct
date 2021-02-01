@@ -16,18 +16,22 @@ using namespace std;
 
 int main()
 {
-    TJoueur baptiste; int nbreParties;
+   /* TJoueur baptiste; int nbreParties;
     InitJoueur(baptiste,"Baptiste");
     cout<<"Combien de partie veux tu jouer ?"<<endl;
     cin>>nbreParties;
 
     while(nbreParties != 0){
-        cout<<"-----------------------------------------------------------------------------------";
+        cout<<endl<<"-----------------------------------------------------------------------------------";
         cout<<endl<<endl<<"Nouvelle partie !"<<endl<<endl;
         int nbreAdeviner = TirerNombreMystere();
         JouerPartie(baptiste,nbreAdeviner);
         nbreParties--;
-    }
+    }*/
+    int nbreJoueur,nbreParties;
+    cout<<"Combien il y a t il de joueurs : "; cin>>nbreJoueur;
+    cout<<"Combien de parties voulez vous jouer : "; cin>>nbreParties;
+    JouerPartieaPlusieurs(nbreJoueur, nbreParties);
 
     return 0;
 }

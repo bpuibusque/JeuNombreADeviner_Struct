@@ -14,6 +14,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <string>
 using namespace std;
 #include "../include/JeuNombreAdeviner.h"
 
@@ -55,8 +56,8 @@ int TirerNombreMystere()
 
 void JouerPartie(TJoueur& un_joueur, int nombreADeviner)
 {
-    int nombreEntree, cpt=1, nbreEssais=0; bool etat = false;
-    cout<<"Entrez un nombre : " ;
+    int nombreEntree, cpt=1, nbreEssais=1; bool etat = false;
+    cout<<endl<<"Entrez un nombre : " ;
     cin>>nombreEntree;
     while(cpt != 4){
         if(nombreEntree < nombreADeviner){
@@ -64,19 +65,21 @@ void JouerPartie(TJoueur& un_joueur, int nombreADeviner)
             cout<<"C'est plus !"<<endl<<endl ;
             cout<<"Entrez un nouveau nombre : " ;
             cin>>nombreEntree;
+            nbreEssais++;
         }else if(nombreEntree > nombreADeviner){
             cpt++;
             cout<<endl<<"C'est moins !"<<endl<<endl ;
             cout<<"Entrez un nouveau nombre : " ;
             cin>>nombreEntree;
+            nbreEssais++;
         }else{
             cpt =4;
             etat = true;
         }
-        nbreEssais++;
+        //nbreEssais++;
     }
     if(nombreEntree == nombreADeviner){
-        cout<<endl<<"C'est gagne ! En "<< nbreEssais<<" essais ..."<<endl;
+        cout<<endl<<"C'est gagne ! En "<< nbreEssais<<" essais "<<endl;
         MajResultatsJoueur(un_joueur,nbreEssais,etat);
     }else{
         cout<<endl<<"C'est perdu la reponse etait : "<<nombreADeviner;
@@ -124,3 +127,47 @@ string Nom(TJoueur joueur){
     return joueur.nom;
 }
 
+// Nom :afficherResultats
+// Rôle : retourne le tableau des résultats des parties
+// Paramètres d'entrée: le ou les joueurs, et le nombre
+// Valeur de retour : rien
+void afficherResultats(TJoueur tab[], int nbrejoueur){
+
+
+}
+
+// Nom :JouerPartieàPlusieurs
+// Rôle : Fait jouer une partie au joueur passé en paramètre
+//        A la fin, affiche les résultats ainsi que le/les gagnants
+// Paramètres d'entrée: le nombre de joueurs et de parties souhaitée
+// Paramètres de sortie: aucuns
+
+void JouerPartieaPlusieurs(int nbreJoueurs,int nbrePartie){
+    int compteur = nbreJoueurs;
+    int i =0;
+    string nomJoueur;
+    TJoueur tabJoueur[nbreJoueurs];
+
+    while(compteur>0){
+        cout<<"Entrez nom du joueur "<<++i<<" : "<<endl;
+        cin>>nomJoueur;
+        InitJoueur(tabJoueur[i],nomJoueur);
+        compteur --;
+    }
+    int compteurJoueur = 0;
+    int cptJoueur = 1;
+    while(nbreJoueurs>0){
+        int nombrePartie = nbrePartie;
+        int compteurPartie =1;
+        while(nombrePartie>0){
+            cout<<endl<<"-----------------------------------------------------------------------------------";
+            cout<<endl<<endl<<"Partie numero "<<compteurPartie<<", Joueur "<<cptJoueur<<endl;
+            JouerPartie(tabJoueur[compteurJoueur],TirerNombreMystere());
+            nombrePartie --;
+            compteurPartie++;
+        }
+        nbreJoueurs--;
+        cptJoueur++;
+    }
+
+}

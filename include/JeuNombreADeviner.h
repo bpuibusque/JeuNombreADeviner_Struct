@@ -78,4 +78,18 @@ void ResultatsJoueur(TJoueur joueur, int &nbsucces, int &nbechec, int & nbessais
 
 string Nom(TJoueur joueur);
 
+// Nom :afficherResultats
+// Rôle : retourne le tableau des résultats des parties
+// Paramètres d'entrée: le ou les joueurs
+// Valeur de retour : rien
+void afficherResultats(TJoueur tab[], int nbrejoueur);
+
+// Nom :JouerPartieàPlusieurs
+// Rôle : Fait jouer une partie au joueur passé en paramètre
+//        A la fin, affiche les résultats ainsi que le/les gagnants
+// Paramètres d'entrée: le nombre de joueurs
+// Paramètres de sortie: aucuns
+
+void JouerPartieaPlusieurs(int nbreJoueurs,int nbrePartie);
+
 
