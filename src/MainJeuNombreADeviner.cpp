@@ -28,6 +28,7 @@ int main()
         JouerPartie(baptiste,nbreAdeviner);
         nbreParties--;
     }*/
+
     int nbreJoueur,nbreParties;
     cout<<"Combien il y a t il de joueurs : "; cin>>nbreJoueur;
     cout<<"Combien de parties voulez vous jouer : "; cin>>nbreParties;

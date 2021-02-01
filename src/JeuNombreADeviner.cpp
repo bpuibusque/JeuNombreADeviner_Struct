@@ -15,6 +15,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+#include <string.h>
 using namespace std;
 #include "../include/JeuNombreAdeviner.h"
 
@@ -128,13 +129,22 @@ string Nom(TJoueur joueur){
 }
 
 // Nom :afficherResultats
-// Rôle : retourne le tableau des résultats des parties
+// Rôle : retourne le tableau des résultats des parties avec le ou les meilleur joueurs
 // Paramètres d'entrée: le ou les joueurs, et le nombre
 // Valeur de retour : rien
 void afficherResultats(TJoueur tab[], int nbrejoueur){
-
-
+    int i = nbrejoueur;
+    TJoueur meilleurJoueur = tab[i]; i++;
+    while(i>0){
+        if(tab[i].nbTentatives > meilleurJoueur.nbTentatives){
+            meilleurJoueur = tab[i];
+        }
+        i--;
+    }
+    cout<<"Le meilleur joueur est "<<meilleurJoueur.nom<<" avec seulement "<<meilleurJoueur.nbTentatives<<" essais"<<endl;
 }
+
+
 
 // Nom :JouerPartieàPlusieurs
 // Rôle : Fait jouer une partie au joueur passé en paramètre
@@ -144,6 +154,7 @@ void afficherResultats(TJoueur tab[], int nbrejoueur){
 
 void JouerPartieaPlusieurs(int nbreJoueurs,int nbrePartie){
     int compteur = nbreJoueurs;
+    int nombreJoueur = nbreJoueurs;
     int i =0;
     string nomJoueur;
     TJoueur tabJoueur[nbreJoueurs];
@@ -169,5 +180,6 @@ void JouerPartieaPlusieurs(int nbreJoueurs,int nbrePartie){
         nbreJoueurs--;
         cptJoueur++;
     }
+    afficherResultats(tabJoueur,nombreJoueur);
 
 }
