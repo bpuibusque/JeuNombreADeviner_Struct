@@ -82,7 +82,7 @@ string Nom(TJoueur joueur);
 // Rôle : retourne le tableau des résultats des parties
 // Paramètres d'entrée: le ou les joueurs
 // Valeur de retour : rien
-void afficherResultats(TJoueur tab[], int nbrejoueur);
+void afficherResultats(TJoueur tab[], int nbrejoueur, int nbrePartie);
 
 // Nom :JouerPartieàPlusieurs
 // Rôle : Fait jouer une partie au joueur passé en paramètre

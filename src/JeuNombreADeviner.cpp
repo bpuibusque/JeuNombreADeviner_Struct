@@ -15,7 +15,10 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+
+
 #include <string.h>
+
 using namespace std;
 #include "../include/JeuNombreAdeviner.h"
 
@@ -31,7 +34,7 @@ void InitJoueur(TJoueur& joueurAcreer, string un_nom)
     joueurAcreer.nom = un_nom;
     joueurAcreer.nbPartiesGagnees = 0;
     joueurAcreer.nbPartiesJouees = 0;
-    joueurAcreer.nbTentatives = 0;
+    joueurAcreer.nbTentatives = 0 ;
 }
 
 
@@ -57,36 +60,40 @@ int TirerNombreMystere()
 
 void JouerPartie(TJoueur& un_joueur, int nombreADeviner)
 {
-    int nombreEntree, cpt=1, nbreEssais=1; bool etat = false;
+
+    int nombreEntree, nbreEssais=1; bool etat = false;
     cout<<endl<<"Entrez un nombre : " ;
     cin>>nombreEntree;
-    while(cpt != 4){
+
+    while((nombreEntree!=nombreADeviner)&& nbreEssais <4 ){
         if(nombreEntree < nombreADeviner){
-            cpt++;
             cout<<"C'est plus !"<<endl<<endl ;
             cout<<"Entrez un nouveau nombre : " ;
             cin>>nombreEntree;
             nbreEssais++;
         }else if(nombreEntree > nombreADeviner){
-            cpt++;
             cout<<endl<<"C'est moins !"<<endl<<endl ;
             cout<<"Entrez un nouveau nombre : " ;
             cin>>nombreEntree;
+
             nbreEssais++;
         }else{
-            cpt =4;
             etat = true;
         }
         //nbreEssais++;
     }
+
     if(nombreEntree == nombreADeviner){
+        etat= true;
         cout<<endl<<"C'est gagne ! En "<< nbreEssais<<" essais "<<endl;
-        MajResultatsJoueur(un_joueur,nbreEssais,etat);
+
     }else{
-        cout<<endl<<"C'est perdu la reponse etait : "<<nombreADeviner;
-        MajResultatsJoueur(un_joueur,nbreEssais,etat);
+        cout<<endl<<"C'est perdu la reponse etait : "<<nombreADeviner<<endl;
+        nbreEssais=4;
     }
+    MajResultatsJoueur(un_joueur,nbreEssais,etat);
 }
+
 
 
 // Nom : MajResultatsJoueur
@@ -97,7 +104,7 @@ void JouerPartie(TJoueur& un_joueur, int nombreADeviner)
 
 void MajResultatsJoueur(TJoueur &joueur, int nbEssais, bool gagne)
 {
-    joueur.nbTentatives +=  nbEssais;
+    joueur.nbTentatives = joueur.nbTentatives +  nbEssais;
     if(gagne){
         joueur.nbPartiesGagnees++;
     }
@@ -130,21 +137,28 @@ string Nom(TJoueur joueur){
 
 // Nom :afficherResultats
 // Rôle : retourne le tableau des résultats des parties avec le ou les meilleur joueurs
-// Paramètres d'entrée: le ou les joueurs, et le nombre
+// Paramètres d'entrée: le ou les joueurs, et le nombre de joueurs
 // Valeur de retour : rien
-void afficherResultats(TJoueur tab[], int nbrejoueur){
-    int i = nbrejoueur;
-    TJoueur meilleurJoueur = tab[i]; i++;
-    while(i>0){
-        if(tab[i].nbTentatives > meilleurJoueur.nbTentatives){
-            meilleurJoueur = tab[i];
+void afficherResultats(TJoueur tab[], int nbrejoueur, int nbrePartie){
+    int i = nbrePartie;
+    int classement = 0;
+    cout<<"\n\nLe classement final est :\n";
+    while(i<=(nbrePartie*4)){
+        int parcoursTableau=0;
+        while(parcoursTableau<nbrejoueur){
+            if(tab[parcoursTableau].nbTentatives==i){
+                cout<<"---------------------------------------------\n";
+                cout<<"Classement : "<<classement<<"  Joueur : "<<\
+                tab[parcoursTableau].nom<<"  Score : "<<tab[parcoursTableau].nbTentatives<<endl;
+            }
+            parcoursTableau++;
         }
-        i--;
+
+        classement++;
+        i++;
     }
-    cout<<"Le meilleur joueur est "<<meilleurJoueur.nom<<" avec seulement "<<meilleurJoueur.nbTentatives<<" essais"<<endl;
+
 }
-
-
 
 // Nom :JouerPartieàPlusieurs
 // Rôle : Fait jouer une partie au joueur passé en paramètre
@@ -154,15 +168,16 @@ void afficherResultats(TJoueur tab[], int nbrejoueur){
 
 void JouerPartieaPlusieurs(int nbreJoueurs,int nbrePartie){
     int compteur = nbreJoueurs;
-    int nombreJoueur = nbreJoueurs;
-    int i =0;
+    int nombreJoueurConstant = nbreJoueurs;
+    int i = 0;
     string nomJoueur;
     TJoueur tabJoueur[nbreJoueurs];
 
     while(compteur>0){
-        cout<<"Entrez nom du joueur "<<++i<<" : "<<endl;
+        cout<<"Entrez nom du joueur "<<(i+1)<<" : "<<endl;
         cin>>nomJoueur;
         InitJoueur(tabJoueur[i],nomJoueur);
+        i++;
         compteur --;
     }
     int compteurJoueur = 0;
@@ -171,15 +186,16 @@ void JouerPartieaPlusieurs(int nbreJoueurs,int nbrePartie){
         int nombrePartie = nbrePartie;
         int compteurPartie =1;
         while(nombrePartie>0){
-            cout<<endl<<"-----------------------------------------------------------------------------------";
+            cout<<"\n-----------------------------------------------------------------------------------";
             cout<<endl<<endl<<"Partie numero "<<compteurPartie<<", Joueur "<<cptJoueur<<endl;
+            cout<<"\n-----------------------------------------------------------------------------------\n";
             JouerPartie(tabJoueur[compteurJoueur],TirerNombreMystere());
             nombrePartie --;
             compteurPartie++;
         }
         nbreJoueurs--;
         cptJoueur++;
+        compteurJoueur++;
     }
-    afficherResultats(tabJoueur,nombreJoueur);
-
+    afficherResultats(tabJoueur,nombreJoueurConstant,nbrePartie);
 }

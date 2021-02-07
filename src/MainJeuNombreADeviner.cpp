@@ -16,6 +16,10 @@ using namespace std;
 
 int main()
 {
+
+
+    //test pour 1 joueur
+
    /* TJoueur baptiste; int nbreParties;
     InitJoueur(baptiste,"Baptiste");
     cout<<"Combien de partie veux tu jouer ?"<<endl;
@@ -29,11 +33,13 @@ int main()
         nbreParties--;
     }*/
 
+
+    //test pour plusieurs joueurs
+
     int nbreJoueur,nbreParties;
     cout<<"Combien il y a t il de joueurs : "; cin>>nbreJoueur;
     cout<<"Combien de parties voulez vous jouer : "; cin>>nbreParties;
     JouerPartieaPlusieurs(nbreJoueur, nbreParties);
 
-    return 0;
 }
 
