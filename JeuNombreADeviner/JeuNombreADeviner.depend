@@ -54,7 +54,13 @@
 1612177054 D
 	"../include/JeuNombreAdeviner.h"
 
-1612177054 source:c:\users\megaport\documents\limayrac\jeunombreadeviner_struct\src\jeunombreadeviner.cpp
+1612794505 source:c:\users\megaport\documents\limayrac\jeunombreadeviner_struct\src\jeunombreadeviner.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<string>
+	<string.h>
+	"../include/JeuNombreAdeviner.h"
 
 1612176773 2b9a8736d3896d78d705282d565ebd4ef49f9
 	<iostream>
@@ -66,10 +72,11 @@
 	<string.h>
 	"../include/JeuNombreAdeviner.h"
 
-1612176772 c:\users\megaport\documents\limayrac\jeunombreadeviner_struct\include\jeunombreadeviner.h
+1612794736 c:\users\megaport\documents\limayrac\jeunombreadeviner_struct\include\jeunombreadeviner.h
 	<string>
 
-1612176773 source:c:\users\megaport\documents\limayrac\jeunombreadeviner_struct\src\mainjeunombreadeviner.cpp
+1612794744 source:c:\users\megaport\documents\limayrac\jeunombreadeviner_struct\src\mainjeunombreadeviner.cpp
 	<iostream>
+	<windows.h>
 	"../include/JeuNombreADeviner.h"
 

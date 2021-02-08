@@ -2,7 +2,7 @@
 // Nom du projet: Jeu du nombre à deviner
 // Nom du fichier: JeuNombreADeviner.cpp
 // Version : 1.0
-// Nom du programmeur: MP Pinaud
+// Nom du programmeur: Baptise Puibusque MP Pinaud
 // Date de création : 25/01/2021
 // Rôle du fichier: Contient le code des fonctions du jeu
 // Nom des composants utilises: JeuNombreADeviner.h
@@ -148,7 +148,7 @@ void afficherResultats(TJoueur tab[], int nbrejoueur, int nbrePartie){
         while(parcoursTableau<nbrejoueur){
             if(tab[parcoursTableau].nbTentatives==i){
                 cout<<"---------------------------------------------\n";
-                cout<<"Classement : "<<classement<<"  Joueur : "<<\
+                cout<<"  Joueur : "<<
                 tab[parcoursTableau].nom<<"  Score : "<<tab[parcoursTableau].nbTentatives<<endl;
             }
             parcoursTableau++;

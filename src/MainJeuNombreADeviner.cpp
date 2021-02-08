@@ -2,7 +2,7 @@
 // Nom du projet: Jeu du nombre à deviner
 // Nom du fichier: MainJeuNombreAdeviner.cpp
 // Version : 1.0
-// Nom du programmeur: MP Pinaud
+// Nom du programmeur: Baptiste Puibusque MP Pinaud
 // Date de création : 25/01/2021
 // Rôle du fichier: Contient le code jeu
 // Nom des composants utilises: JeuNombreADeviner.h
@@ -10,6 +10,7 @@
 // Historique du fichier:
 /*************************************************/
 #include <iostream>
+#include <windows.h>
 using namespace std;
 
 #include "../include/JeuNombreADeviner.h"
@@ -36,10 +37,12 @@ int main()
 
     //test pour plusieurs joueurs
 
-    int nbreJoueur,nbreParties;
+    int nbreJoueur,nbreParties,caractereSortie;
     cout<<"Combien il y a t il de joueurs : "; cin>>nbreJoueur;
     cout<<"Combien de parties voulez vous jouer : "; cin>>nbreParties;
     JouerPartieaPlusieurs(nbreJoueur, nbreParties);
-
+    cout<<endl<<"Saisir un caractere pour quitter :";
+    cin>>caractereSortie;
 }
+
 
