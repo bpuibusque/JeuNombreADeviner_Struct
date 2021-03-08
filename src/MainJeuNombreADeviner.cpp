@@ -1,7 +1,7 @@
 /*************************************************/
 // Nom du projet: Jeu du nombre à deviner
 // Nom du fichier: MainJeuNombreAdeviner.cpp
-// Version : 1.0
+// Version : 1.1
 // Nom du programmeur: Baptiste Puibusque MP Pinaud
 // Date de création : 25/01/2021
 // Rôle du fichier: Contient le code jeu
