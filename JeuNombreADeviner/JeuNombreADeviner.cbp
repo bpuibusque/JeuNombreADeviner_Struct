@@ -36,7 +36,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="../CJoueur.h" />
+		<Unit filename="../include/CJoueur.h" />
 		<Unit filename="../include/CPartie.h" />
 		<Unit filename="../include/JeuNombreADeviner.h" />
 		<Unit filename="../src/CJoueur.cpp" />

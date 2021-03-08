@@ -13,36 +13,57 @@
 #include <windows.h>
 using namespace std;
 
-#include "../include/JeuNombreADeviner.h"
+
+#include "../include/CPartie.h"
 
 int main()
 {
+    int nbJoueurs, nbParties;
+    cout<<"____________JEUX DU NOMBRE A DEVINER____________"<<endl<<endl;
+    cout<<"______________Combien de Joueurs ?______________"<<endl;
+    cin>>nbJoueurs;
+    cout<<"______________Combien de Parties ?______________"<<endl;
+    cin>>nbParties;
+    cout<<"------------------------------------------------"<< endl;
+
+    CJoueur *tabJoueur[nbJoueurs]; //initialisation du tableau des joueurs
+
+    int i; //compteur pour les manipulations avec les joueurs
+
+    for(i=0;i<nbJoueurs;i++){
+        cout<<"Entrez prenom et nom du joueur "<<(i+1)<<" : ";
+        string prenom;
+        cin>>prenom;
+        string nom;
+        cin>>nom;
+
+        tabJoueur[i] = new CJoueur(prenom,nom);
+    }
+
+    for(i=0;i<nbJoueurs;i++){
+        for(int j=0;j<nbParties;j++){
+            CPartie partie (0,10,4);
+            partie.Jouer(*tabJoueur[i]);
+        }
+    }
+
+    for(i=0;i<nbJoueurs;i++){
+        int nbsucces, nbechecs, nbessais;
+        tabJoueur[i]->Resultats(nbsucces,nbechecs,nbessais);// Récupération des résultats du joueur
+
+        cout << "----------------------------------------------"<< endl;
+        cout << "Affichage des resultats de "<< tabJoueur[i]->Identite() << endl;
+        cout << "----------------------------------------------"<< endl;
+
+        cout << "Nombre de parties gagnees : " << nbsucces << endl;
+        cout << "Nombre de parties perdues : " << nbechecs << endl;
+        cout << "Nombre de tentatives totales : " << nbessais << endl;
+
+        cout << "----------------------------------------------"<< endl;
+    }
 
 
-    //test pour 1 joueur
 
-   /* TJoueur baptiste; int nbreParties;
-    InitJoueur(baptiste,"Baptiste");
-    cout<<"Combien de partie veux tu jouer ?"<<endl;
-    cin>>nbreParties;
-
-    while(nbreParties != 0){
-        cout<<endl<<"-----------------------------------------------------------------------------------";
-        cout<<endl<<endl<<"Nouvelle partie !"<<endl<<endl;
-        int nbreAdeviner = TirerNombreMystere();
-        JouerPartie(baptiste,nbreAdeviner);
-        nbreParties--;
-    }*/
-
-
-    //test pour plusieurs joueurs
-
-    int nbreJoueur,nbreParties,caractereSortie;
-    cout<<"Combien il y a t il de joueurs : "; cin>>nbreJoueur;
-    cout<<"Combien de parties voulez vous jouer : "; cin>>nbreParties;
-    JouerPartieaPlusieurs(nbreJoueur, nbreParties);
-    cout<<endl<<"Saisir un caractere pour quitter :";
-    cin>>caractereSortie;
 }
 
 
