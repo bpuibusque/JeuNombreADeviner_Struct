@@ -63,6 +63,13 @@ int main()
     }
 
 
+    //Realisation du classement
+    for(int i=0;i<nbJoueurs;i++){
+
+
+    }
+
+
 
 }
 
